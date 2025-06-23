@@ -151,8 +151,8 @@ def aggregate_ingredients(categorized_ingredients):
     return {"pantry": final_pantry, "perishables": final_perishables}
 
 
-st.set_page_config(layout="wide", page_title="AI Grocery List Generator")
-st.title("🛒 AI-Powered Grocery List Generator")
+st.set_page_config(layout="wide", page_title="AI Grocery Shopping Assistant")
+st.title("🛒 AI-Powered Grocery Shopping Assistant")
 st.markdown("Enter the dishes you want to cook for the week, and I'll create a smart grocery list!")
 
 if 'dishes' not in st.session_state:
