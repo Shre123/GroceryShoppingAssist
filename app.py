@@ -153,7 +153,7 @@ def aggregate_ingredients(categorized_ingredients):
 
 st.set_page_config(layout="wide", page_title="AI Grocery Shopping Assistant")
 st.title("🛒 AI-Powered Grocery Shopping Assistant")
-st.markdown("Enter the dishes you want to cook for the week, and I'll create a smart grocery list!")
+st.markdown("Enter the name of the dishes you want to cook for the week along with the servings, and I'll create a smart grocery list!")
 
 if 'dishes' not in st.session_state:
     st.session_state.dishes = [{'name': '', 'servings': 1}]
