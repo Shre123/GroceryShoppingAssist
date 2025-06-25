@@ -5,9 +5,10 @@ import requests
 import json
 import re # For cleaning recipe text
 import urllib.parse # For URL encoding for mailto link
+import pandas as pd # Import pandas for DataFrame
 
 # Define the API endpoint and key (leave key as empty string for Canvas)
-API_KEY = "AIzaSyC8uhJIDSnzAe35XiPMeR3o6_rh_QZzlVg" # The Canvas environment will inject the API key at runtime if left empty
+API_KEY = "AIzaSyBpTz9WomZhAHWWzvxpF_bsNFEqZpiHa9E" # The Canvas environment will inject the API key at runtime if left empty
 API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=" + API_KEY
 
 def call_gemini_api(prompt, schema=None):
@@ -249,22 +250,34 @@ if st.button("Generate Grocery List", type="primary"):
 
                 st.subheader("🛍️ Your Grocery Shopping List")
                 grocery_list_text = ""
+                all_items_for_table = []
+                sl_no = 1
 
                 st.markdown("#### Pantry Items")
                 if final_grocery_list.get('pantry'):
                     for item in final_grocery_list['pantry']:
-                        st.write(f"- **{item['item']}**: {item['quantity']}")
+                        all_items_for_table.append({"Sl No": sl_no, "Ingredient Name": item['item'], "Quantity": item['quantity']})
                         grocery_list_text += f"- {item['item']}: {item['quantity']}\n"
+                        sl_no += 1
                 else:
                     st.info("No pantry items identified or needed for this meal plan.")
 
                 st.markdown("#### Perishables")
                 if final_grocery_list.get('perishables'):
                     for item in final_grocery_list['perishables']:
-                        st.write(f"- **{item['item']}**: {item['quantity']}")
+                        all_items_for_table.append({"Sl No": sl_no, "Ingredient Name": item['item'], "Quantity": item['quantity']})
                         grocery_list_text += f"- {item['item']}: {item['quantity']}\n"
+                        sl_no += 1
                 else:
                     st.info("No perishables identified or needed for this meal plan.")
+
+                # Display in tabular format
+                if all_items_for_table:
+                    df_grocery = pd.DataFrame(all_items_for_table)
+                    st.dataframe(df_grocery, hide_row_index=True) # hide_row_index for cleaner look
+                else:
+                    st.info("No ingredients to display in the table.")
+
 
                 st.markdown("---")
                 st.subheader("Copy to your Shopping List App")
