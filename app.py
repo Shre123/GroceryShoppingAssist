@@ -266,6 +266,14 @@ if st.button("Generate Grocery List", type="primary"):
                 else:
                     st.info("No perishables identified or needed for this meal plan.")
 
+                # Display in tabular format
+                if all_items_for_table:
+                    df_grocery = pd.DataFrame(all_items_for_table)
+                    st.dataframe(df_grocery, hide_row_index=True) # hide_row_index for cleaner look
+                else:
+                    st.info("No ingredients to display in the table.")
+
+
                 st.markdown("---")
                 st.subheader("Copy to your Shopping List App")
                 st.info("Copy the text below and paste it into Google Keep, Apple Reminders, or any other shopping list app.")
