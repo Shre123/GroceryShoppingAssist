@@ -249,6 +249,8 @@ if st.button("Generate Grocery List", type="primary"):
 
                 st.subheader("🛍️ Your Grocery Shopping List")
                 grocery_list_text = ""
+                all_items_for_table = []
+                sl_no = 1
 
                 st.markdown("#### Pantry Items")
                 if final_grocery_list.get('pantry'):
