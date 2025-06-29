@@ -6,7 +6,7 @@ import json
 import re # For cleaning recipe text
 
 # Define the API endpoint and key (leave key as empty string for Canvas)
-API_KEY = "AIzaSyBpTz9WomZhAHWWzvxpF_bsNFEqZpiHa9E" # The Canvas environment will inject the API key at runtime if left empty
+API_KEY = "" # The Canvas environment will inject the API key at runtime if left empty
 API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=" + API_KEY
 
 def call_gemini_api(prompt, schema=None):
