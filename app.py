@@ -8,7 +8,7 @@ import urllib.parse # For URL encoding for mailto link
 import pandas as pd # Import pandas for DataFrame
 
 # Define the API endpoint and key (leave key as empty string for Canvas)
-API_KEY = "AIzaSyBpTz9WomZhAHWWzvxpF_bsNFEqZpiHa9E" # The Canvas environment will inject the API key at runtime if left empty
+API_KEY = "" # The Canvas environment will inject the API key at runtime if left empty
 API_URL = "" + API_KEY
 
 def call_gemini_api(prompt, schema=None):
